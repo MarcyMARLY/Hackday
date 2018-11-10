@@ -18,7 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".search.LocationSearchActivity"></activity>
+        <activity android:name=".search.LocationSearchActivity" />
+        <activity android:name=".constructor.ConstructorActivity" />
+        <activity android:name=".constructor.ItemListActivity"></activity>
     </application>
 
 </manifest>

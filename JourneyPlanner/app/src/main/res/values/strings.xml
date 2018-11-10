@@ -17,5 +17,7 @@
     <string name="insurance_title">Insurance</string>
     <string name="insurance_description">Make your journey safe</string>
 
+    <string name="constructor">Constructor</string>
+
     <string name="fragment_search_header">Plan your journey!</string>
 </resources>
