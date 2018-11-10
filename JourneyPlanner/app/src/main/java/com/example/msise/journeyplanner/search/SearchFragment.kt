@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -51,6 +52,10 @@ class SearchFragment : Fragment() {
         children = view.findViewById(R.id.card_passengers_children)
         infants = view.findViewById(R.id.card_passengers_infants)
         continueButton = view.findViewById(R.id.fragment_search_button_continue)
+
+        children.imeOptions = EditorInfo.IME_ACTION_DONE
+        adults.imeOptions = EditorInfo.IME_ACTION_DONE
+        infants.imeOptions = EditorInfo.IME_ACTION_DONE
 
         flightFrom.setOnClickListener(clickListener)
         flightTo.setOnClickListener(clickListener)
