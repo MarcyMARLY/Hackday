@@ -1,20 +1,18 @@
 package com.example.msise.journeyplanner
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.msise.journeyplanner.network.ApiClient
 import com.example.msise.journeyplanner.network.ApiInterface
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
-import android.support.v7.app.ActionBar
 import com.example.msise.journeyplanner.collections.CollectionsFragment
 import com.example.msise.journeyplanner.search.SearchFragment
 import com.example.msise.journeyplanner.settings.SettingsFragment
 
 
 class MainActivity : AppCompatActivity() {
-
-    lateinit var toolbar: ActionBar
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
         when (it.itemId) {
@@ -37,6 +35,8 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
         }
+        val fragment: Fragment = SearchFragment.newInstance()
+        openFragment(fragment)
         false
     }
 
@@ -45,8 +45,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val endPoint = ApiClient().getClient().create(ApiInterface::class.java)
-
-        toolbar = supportActionBar!!
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.activity_main_navigation)
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
@@ -57,5 +55,9 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.activity_main_frame_container, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }
