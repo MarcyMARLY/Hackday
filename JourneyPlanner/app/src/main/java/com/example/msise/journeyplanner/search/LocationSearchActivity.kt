@@ -10,6 +10,11 @@ import android.widget.ListView
 import com.example.msise.journeyplanner.R
 import android.widget.ListAdapter
 import android.support.v7.widget.SearchView
+import android.util.Log
+import com.example.msise.journeyplanner.network.ApiClient
+import com.example.msise.journeyplanner.network.ApiInterface
+import kotlinx.coroutines.experimental.launch
+import retrofit2.Call
 
 private const val LOCATION = "Location"
 
@@ -18,13 +23,29 @@ class LocationSearchActivity : AppCompatActivity(), SearchView.OnQueryTextListen
     var toolbar: Toolbar? = null
     lateinit var recyclerView: ListView
     private val TAG = LocationSearchActivity::class.java!!.simpleName
-    var arrays = arrayOf("98411", "98422", "98433", "98444", "98455")
+    var arrays: MutableList<String> = mutableListOf()
     lateinit var adapter: ArrayAdapter<String>
+    lateinit var endPoint: ApiInterface
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_location_search)
-        setupViews()
+        endPoint = ApiClient().getClient().create(ApiInterface::class.java)
+        setupCities()
+    }
+
+    private fun setupCities() {
+        val call: Call<List<String>> = endPoint.getCities()
+        val s = launch {
+            val res = call.execute()?.body()
+            if (res != null) {
+                arrays.addAll(res)
+                runOnUiThread {
+                    setupViews()
+                }
+            }
+            Log.e("LLLL", res.toString())
+        }
     }
 
     private fun setupViews() {
