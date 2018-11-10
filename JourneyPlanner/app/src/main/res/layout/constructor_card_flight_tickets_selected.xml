@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/flightTicketsSelectedCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="@color/colorPink"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/flightTicketsSelectedIcon"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:src="@drawable/ic_airplane_24dp"
+                android:tint="@color/colorWhite"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_margin="32dp"/>
+
+            <TextView
+                android:text="10:45 - 12:15"
+                android:id="@+id/flightTicketsSelectedFirstTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintLeft_toRightOf="@id/flightTicketsSelectedIcon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/flightTicketsSelectedFirstDescription"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="32dp"/>
+
+            <TextView
+                android:text="ALA - TSE, Bek Air"
+                android:id="@+id/flightTicketsSelectedFirstDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintLeft_toRightOf="@id/flightTicketsSelectedIcon"
+                app:layout_constraintTop_toBottomOf="@id/flightTicketsSelectedFirstTime"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"/>
+
+            <TextView
+                android:text="1h 30m"
+                android:id="@+id/flightTicketsSelectedFirstDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/flightTicketsSelectedFirstTime"
+                app:layout_constraintBottom_toTopOf="@id/flightTicketsSelectedFirstDescription"
+                android:layout_marginEnd="16dp"/>
+
+
+
+            <TextView
+                android:text="4:00 - 5:35"
+                android:id="@+id/flightTicketsSelectedSecondTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintLeft_toRightOf="@id/flightTicketsSelectedIcon"
+                app:layout_constraintTop_toBottomOf="@id/flightTicketsSelectedFirstDescription"
+                app:layout_constraintBottom_toTopOf="@id/flightTicketsSelectedSecondDescription"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="32dp"/>
+
+            <TextView
+                android:text="TSE - ALA, Bek Air"
+                android:id="@+id/flightTicketsSelectedSecondDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintLeft_toRightOf="@id/flightTicketsSelectedIcon"
+                app:layout_constraintTop_toBottomOf="@id/flightTicketsSelectedSecondTime"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"/>
+
+            <TextView
+                android:text="1h 35m"
+                android:id="@+id/flightTicketsSelectedSecondDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/flightTicketsSelectedSecondTime"
+                app:layout_constraintBottom_toTopOf="@id/flightTicketsSelectedSecondDescription"
+                android:layout_marginEnd="16dp"/>
+
+            <Button
+                android:text="Price: $95.40"
+                android:id="@+id/flightTicketsSelectedPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/colorPink"
+                android:background="@drawable/rounded_button"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                app:layout_constraintTop_toBottomOf="@id/flightTicketsSelectedSecondDescription"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/flightTicketsSelectedIcon"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>
