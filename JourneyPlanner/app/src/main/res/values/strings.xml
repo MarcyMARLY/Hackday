@@ -18,4 +18,5 @@
     <string name="insurance_description">Make your journey safe</string>
 
     <string name="fragment_search_header">Plan your journey!</string>
+    <string name="fragment_settings_header">Settings</string>
 </resources>
