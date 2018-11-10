@@ -128,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="@color/colorPurple"
-                android:background="@drawable/rounded_button"
+                android:background="@drawable/rounded_button_price"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:paddingTop="8dp"
