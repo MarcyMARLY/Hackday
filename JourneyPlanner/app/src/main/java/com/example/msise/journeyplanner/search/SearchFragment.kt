@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.support.v4.app.Fragment
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +34,7 @@ class SearchFragment : Fragment() {
     lateinit var children: EditText
     lateinit var infants: EditText
     lateinit var continueButton: Button
+    lateinit var fab: FloatingActionButton
     var year: Int = 0
     var month: Int = 0
     var day: Int = 0
@@ -52,6 +54,7 @@ class SearchFragment : Fragment() {
         children = view.findViewById(R.id.card_passengers_children)
         infants = view.findViewById(R.id.card_passengers_infants)
         continueButton = view.findViewById(R.id.fragment_search_button_continue)
+        fab = view.findViewById(R.id.fragment_search_fab)
 
         children.imeOptions = EditorInfo.IME_ACTION_DONE
         adults.imeOptions = EditorInfo.IME_ACTION_DONE
@@ -65,6 +68,7 @@ class SearchFragment : Fragment() {
         children.setOnClickListener(clickListener)
         infants.setOnClickListener(clickListener)
         continueButton.setOnClickListener(clickListener)
+        fab.setOnClickListener(clickListener)
     }
 
     private val clickListener = View.OnClickListener { view ->
@@ -109,6 +113,10 @@ class SearchFragment : Fragment() {
             }
             R.id.card_passengers_infants -> {
 
+            }
+            R.id.fragment_search_fab -> {
+                val intent = Intent(context, SmartSearchActivity::class.java)
+                startActivity(intent)
             }
             R.id.fragment_search_button_continue -> {
 

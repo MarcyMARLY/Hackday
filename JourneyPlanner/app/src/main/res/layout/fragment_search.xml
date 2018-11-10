@@ -237,7 +237,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="40dp"
                 android:backgroundTint="@color/baseBlue"
-                android:src="@drawable/ic_keyboard_voice"
+                android:src="@drawable/ic_brain"
                 app:fabCustomSize="47dp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fragment_search_container" />
