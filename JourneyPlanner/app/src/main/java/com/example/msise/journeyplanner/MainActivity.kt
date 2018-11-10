@@ -48,6 +48,9 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.activity_main_navigation)
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
+        val fragment: Fragment = SearchFragment.newInstance()
+        openFragment(fragment)
     }
 
     private fun openFragment(fragment: Fragment) {

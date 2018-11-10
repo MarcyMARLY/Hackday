@@ -2,16 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_bottom_search"
-        android:icon="@drawable/ic_launcher_background"
+        android:iconTint="@color/nav_bar_icon_color"
+        android:icon="@drawable/ic_home"
         android:title="Search" />
 
     <item
         android:id="@+id/menu_bottom_collections"
-        android:icon="@drawable/ic_launcher_background"
+        android:iconTint="@color/nav_bar_icon_color"
+        android:icon="@drawable/ic_collections_bookmark"
         android:title="Collections" />
 
     <item
         android:id="@+id/menu_bottom_settings"
-        android:icon="@drawable/ic_launcher_background"
+        android:iconTint="@color/nav_bar_icon_color"
+        android:icon="@drawable/ic_settings"
         android:title="Settings" />
 </menu>
