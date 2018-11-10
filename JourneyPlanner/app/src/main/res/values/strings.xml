@@ -3,5 +3,19 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="flight_tickets_title">Flight tickets</string>
+    <string name="flight_tickets_description">Select your flight tickets</string>
+    <string name="accommodation_title">Accommodation</string>
+    <string name="accommodation_description">Hotels, motels, hostels, etc.</string>
+    <string name="food_title">Food</string>
+    <string name="food_description">Restaurants, cafes, doners, fastfood, etc.</string>
+    <string name="entertainment_title">Entertainment</string>
+    <string name="entertainment_description">Museums, cinema, excursion, theaters, fests, etc.</string>
+    <string name="car_rent_title">Car rent</string>
+    <string name="car_rent_description">Rent cars any size, any type</string>
+    <string name="insurance_title">Insurance</string>
+    <string name="insurance_description">Make your journey safe</string>
+
     <string name="fragment_search_header">Plan your journey!</string>
 </resources>
