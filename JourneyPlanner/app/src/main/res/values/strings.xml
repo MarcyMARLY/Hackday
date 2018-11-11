@@ -20,4 +20,6 @@
     <string name="constructor">Constructor</string>
 
     <string name="fragment_search_header">Plan your journey!</string>
+    <string name="fragment_settings_header">Settings</string>
+    <string name="fragment_smart_search_header">What is your journey about?</string>
 </resources>

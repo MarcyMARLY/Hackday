@@ -7,6 +7,7 @@ import com.example.msise.journeyplanner.network.ApiClient
 import com.example.msise.journeyplanner.network.ApiInterface
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
+import android.view.WindowManager
 import com.example.msise.journeyplanner.collections.CollectionsFragment
 import com.example.msise.journeyplanner.search.SearchFragment
 import com.example.msise.journeyplanner.settings.SettingsFragment
@@ -51,6 +52,8 @@ class MainActivity : AppCompatActivity() {
 
         val fragment: Fragment = SearchFragment.newInstance()
         openFragment(fragment)
+        this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
     }
 
     private fun openFragment(fragment: Fragment) {
