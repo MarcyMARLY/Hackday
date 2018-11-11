@@ -23,7 +23,7 @@
             android:text="@string/fragment_smart_search_header"
             android:textAlignment="center"
             android:textColor="@color/baseWhite"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <android.support.v7.widget.CardView
             android:id="@+id/fragment_search_card_flights"
@@ -45,7 +45,7 @@
                     android:background="@null"
                     android:hint="Add your associations with this journey"
                     android:textColor="@color/app_grey_900"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
         </android.support.v7.widget.CardView>
     </android.support.constraint.ConstraintLayout>

@@ -29,47 +29,55 @@ class ConstructorActivity : AppCompatActivity() {
 
         val tickets = intent.getParcelableArrayListExtra<TicketsResponse>("tickets")
         val hotels = intent.getParcelableArrayListExtra<Hotel>("hotels")
+        val open = intent.getIntExtra("open", 0)
+
+        val ticketsDataset = ArrayList<FlightTickets>()
+        val hotelsDataset = ArrayList<Accommodation>()
 
         dataset = ArrayList()
 
-        val save: TextView = findViewById(R.id.save)
-        save.setOnClickListener{
-            finish()
-        }
+        if (open == 1) {
+            openJourney()
+        } else {
 
-        val ticketsDataset = ArrayList<FlightTickets>()
-        if (tickets != null) {
-            for (t in 0..(tickets.size-1)) {
-                val ticket = tickets[t]
-                val flightTicket = FlightTickets(ticket.dateFrom,
-                        ticket.flyFrom + " - " + ticket.flyTo + ", " + ticket.airlineFrom,
-                        ticket.flyDuration,
-                        ticket.dateTo,
-                        ticket.flyTo + " - " + ticket.flyFrom + ", " + ticket.airlineFrom,
-                        ticket.returnDuration,
-                        "Price: $" + ticket.price.toString())
-                ticketsDataset.add(flightTicket)
+
+            val save: TextView = findViewById(R.id.save)
+            save.setOnClickListener {
+                finish()
             }
-            ticketGenerated = ticketsDataset[0]
-        }
 
-        val hotelsDataset = ArrayList<Accommodation>()
-        if (hotels != null) {
-            for (h in 0..(hotels.size-1)) {
-                val hotel = hotels[h]
-                val accommodation = Accommodation(hotel.hotelName, hotel.stars.toDouble().roundToInt(), hotel.address + ", " + hotel.cityName, "Price: $" + hotel.price.toString())
-                hotelsDataset.add(accommodation)
+            if (tickets != null) {
+                for (t in 0..(tickets.size - 1)) {
+                    val ticket = tickets[t]
+                    val flightTicket = FlightTickets(ticket.dateFrom,
+                            ticket.flyFrom + " - " + ticket.flyTo + ", " + ticket.airlineFrom,
+                            ticket.flyDuration,
+                            ticket.dateTo,
+                            ticket.flyTo + " - " + ticket.flyFrom + ", " + ticket.airlineFrom,
+                            ticket.returnDuration,
+                            "Price: $" + ticket.price.toString())
+                    ticketsDataset.add(flightTicket)
+                }
+                ticketGenerated = ticketsDataset[0]
             }
-            hotelGenerated = hotelsDataset[0]
-        }
 
-        dataset.add(Pair("Generate by Budget", 1))
-        dataset.add(FLIGHTTICKETS)
-        dataset.add(ACCOMMODATION)
-        dataset.add(FOOD)
-        dataset.add(ENTERTAINMENT)
-        dataset.add(CARRENT)
-        dataset.add(INSURANCE)
+            if (hotels != null) {
+                for (h in 0..(hotels.size - 1)) {
+                    val hotel = hotels[h]
+                    val accommodation = Accommodation(hotel.hotelName, hotel.stars.toDouble().roundToInt(), hotel.address + ", " + hotel.cityName, "Price: $" + hotel.price.toString())
+                    hotelsDataset.add(accommodation)
+                }
+                hotelGenerated = hotelsDataset[0]
+            }
+
+            dataset.add(Pair("Generate by Budget", 1))
+            dataset.add(FLIGHTTICKETS)
+            dataset.add(ACCOMMODATION)
+            dataset.add(FOOD)
+            dataset.add(ENTERTAINMENT)
+            dataset.add(CARRENT)
+            dataset.add(INSURANCE)
+        }
 
         constructorRecyclerView.layoutManager = LinearLayoutManager(this)
         constructorRecyclerView.adapter = ConstructorAdapter(this, dataset, ticketsDataset, hotelsDataset)
@@ -79,7 +87,17 @@ class ConstructorActivity : AppCompatActivity() {
         return ticketsCost + accommodationCost + foodCost + entCost + carCost + insuranceCost
     }
 
+    fun openJourney() {
+        dataset.add(Pair("Generate by Budget", 1))
+        dataset.add(FlightTickets("13:15 - 21:40", "TSE - LAA, UN", "8h 25m", "09:00 - 18:00", "LAA - TSE, UN", "9h 00m", "Price: $600"))
+        dataset.add(Accommodation("Meridian Resort", 4, "Sent Luis Avenue 59", "Price: $600.00"))
+        dataset.add(Food("Italian Senioro", "Whereiswaldo Street 46", "Price: $30.00"))
+        dataset.add(Entertainment("Sweet Fest", "Dominica Square, lots of sweet food", "Price: $15.20"))
+        dataset.add(CarRent("Honda A9", "Middle class hetchback", "Price: $40.00"))
+        dataset.add(Insurance("Basic Health Pack", "Collects the most popular medical insurance", "Price: $25.00"))
 
+        constructorRecyclerView.adapter?.notifyDataSetChanged()
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when(requestCode) {
