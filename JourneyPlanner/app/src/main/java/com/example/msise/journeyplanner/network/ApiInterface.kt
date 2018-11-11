@@ -1,7 +1,9 @@
 package com.example.msise.journeyplanner.network
 
 import com.example.msise.journeyplanner.model.Hotel
+import com.example.msise.journeyplanner.model.ServerResponse
 import com.example.msise.journeyplanner.model.TicketsRequest
+import com.example.msise.journeyplanner.model.TicketsResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -10,8 +12,8 @@ import retrofit2.http.Path
 
 interface ApiInterface {
 
-    @POST("tickets/")
-    fun sendTicket(@Body ticketsRequest: TicketsRequest): Call<TicketsRequest>
+    @POST("tickets")
+    fun sendTicket(@Body ticketsRequest: TicketsRequest): Call<ServerResponse>
 
     @GET("hotels/")
     fun getHotels(): Call<List<Hotel>>

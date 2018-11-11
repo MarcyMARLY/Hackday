@@ -12,13 +12,17 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.example.msise.journeyplanner.R
+import com.example.msise.journeyplanner.constructor.ConstructorActivity
+import com.example.msise.journeyplanner.model.ServerResponse
 import com.example.msise.journeyplanner.model.TicketsRequest
+import com.example.msise.journeyplanner.model.TicketsResponse
 import com.example.msise.journeyplanner.network.ApiClient
 import com.example.msise.journeyplanner.network.ApiInterface
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+import kotlin.collections.ArrayList
 
 private const val LOCATION = "Location"
 private const val TYPE = "Type"
@@ -133,14 +137,20 @@ class SearchFragment : Fragment() {
 
                 val endPoint = ApiClient().getClient().create(ApiInterface::class.java)
                 val call = endPoint.sendTicket(ticketsRequest = ticket)
-                call.enqueue(object : Callback<TicketsRequest>{
-                    override fun onResponse(call: Call<TicketsRequest>?, response: Response<TicketsRequest>?) {
-                        //val post = response?.body()
-                        Log.d("Ticket: ", "ok")
+                call.enqueue(object : Callback<ServerResponse>{
+
+                    override fun onResponse(call: Call<ServerResponse>, response: Response<ServerResponse>) {
+                        val result = response.body()
+                        val tickets = result?.tickets as ArrayList
+                        val hotels = result?.hotels as ArrayList
+
+                        startActivity(Intent(activity, ConstructorActivity::class.java)
+                                .putParcelableArrayListExtra("tickets", tickets)
+                                .putParcelableArrayListExtra("hotels", hotels))
                     }
 
-                    override fun onFailure(call: Call<TicketsRequest>?, t: Throwable?) {
-                        Log.e("ErrorTicket: ", t?.message)
+                    override fun onFailure(call: Call<ServerResponse>, t: Throwable) {
+
                     }
                 })
 

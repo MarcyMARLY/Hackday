@@ -1,6 +1,8 @@
 package com.example.msise.journeyplanner.constructor
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +15,7 @@ import kotlinx.android.synthetic.main.constructor_card_car_rent.view.*
 import kotlinx.android.synthetic.main.constructor_card_car_rent_selected.view.*
 import kotlinx.android.synthetic.main.constructor_card_entertainment.view.*
 import kotlinx.android.synthetic.main.constructor_card_entertainment_selected.view.*
+import kotlinx.android.synthetic.main.constructor_card_flight_tickets.view.*
 import kotlinx.android.synthetic.main.constructor_card_flight_tickets_selected.view.*
 import kotlinx.android.synthetic.main.constructor_card_food.view.*
 import kotlinx.android.synthetic.main.constructor_card_food_selected.view.*
@@ -20,7 +23,7 @@ import kotlinx.android.synthetic.main.constructor_card_insurance.view.*
 import kotlinx.android.synthetic.main.constructor_card_insurance_selected.view.*
 import kotlinx.android.synthetic.main.constructor_card_top_text.view.*
 
-class ConstructorAdapter(var context: Context, var dataset: ArrayList<Any>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ConstructorAdapter(var context: Context, var dataset: ArrayList<Any>, var tickets: ArrayList<FlightTickets>, var hotels: ArrayList<Accommodation>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     object HolderTypes {
         const val TOPTEXT = 1
@@ -64,7 +67,7 @@ class ConstructorAdapter(var context: Context, var dataset: ArrayList<Any>) : Re
         HolderTypes.CARRENT               -> CarRentViewHolder(LayoutInflater.from(context).inflate(R.layout.constructor_card_car_rent, p0, false))
         HolderTypes.INSURANCE             -> InsuranceViewHolder(LayoutInflater.from(context).inflate(R.layout.constructor_card_insurance, p0, false))
         HolderTypes.FLIGHTTICKETSSELECTED -> FlightTicketsSelectedViewHolder(LayoutInflater.from(context).inflate(R.layout.constructor_card_flight_tickets_selected, p0, false))
-        HolderTypes.ACCOMMODATIONSELECTED -> AccommodationVSelectediewHolder(LayoutInflater.from(context).inflate(R.layout.constructor_card_accommodation_selected, p0, false))
+        HolderTypes.ACCOMMODATIONSELECTED -> AccommodationSelectediewHolder(LayoutInflater.from(context).inflate(R.layout.constructor_card_accommodation_selected, p0, false))
         HolderTypes.FOODSELECTED          -> FoodSelectedViewHolder(LayoutInflater.from(context).inflate(R.layout.constructor_card_food_selected, p0, false))
         HolderTypes.ENTERTAINMENTSELECTED -> EntertainmentSelectedViewHolder(LayoutInflater.from(context).inflate(R.layout.constructor_card_entertainment_selected, p0, false))
         HolderTypes.CARRENTSELECTED       -> CarRentSelectedViewHolder(LayoutInflater.from(context).inflate(R.layout.constructor_card_car_rent_selected, p0, false))
@@ -77,7 +80,92 @@ class ConstructorAdapter(var context: Context, var dataset: ArrayList<Any>) : Re
     }
 
     override fun onBindViewHolder(p0: RecyclerView.ViewHolder, p1: Int) {
+        when (p0) {
+            is TopTextViewHolder -> {
 
+            }
+            is FlightTicketsSelectedViewHolder -> {
+                val ticket = dataset[p1]
+                if (ticket is FlightTickets) {
+                    p0.itemView.flightTicketsSelectedFirstTime.text = ticket.firstTime
+                    p0.itemView.flightTicketsSelectedFirstDescription.text = ticket.firstDesc
+                    p0.itemView.flightTicketsSelectedFirstDuration.text = ticket.firstDuration
+                    p0.itemView.flightTicketsSelectedSecondTime.text = ticket.secondTime
+                    p0.itemView.flightTicketsSelectedSecondDescription.text = ticket.secondDesc
+                    p0.itemView.flightTicketsSelectedSecondDuration.text = ticket.secondDuration
+                    p0.itemView.flightTicketsSelectedPrice.text = ticket.price
+                }
+            }
+            is AccommodationSelectediewHolder -> {
+                val acc = dataset[p1]
+                if (acc is Accommodation) {
+                    p0.itemView.accommodationSelectedTitle.text = acc.name
+                    p0.itemView.accommodationSelectedDescription.text = acc.desription
+                    p0.itemView.accommodationSelectedPrice.text = acc.price
+                    when(acc.stars) {
+                        1 -> {
+                            p0.itemView.accommodationSelectedStar1.visibility = View.VISIBLE
+                            p0.itemView.accommodationSelectedStar2.visibility = View.INVISIBLE
+                            p0.itemView.accommodationSelectedStar3.visibility = View.INVISIBLE
+                            p0.itemView.accommodationSelectedStar4.visibility = View.INVISIBLE
+                            p0.itemView.accommodationSelectedStar5.visibility = View.INVISIBLE
+                        }
+                        2 -> {
+                            p0.itemView.accommodationSelectedStar1.visibility = View.VISIBLE
+                            p0.itemView.accommodationSelectedStar2.visibility = View.VISIBLE
+                            p0.itemView.accommodationSelectedStar3.visibility = View.INVISIBLE
+                            p0.itemView.accommodationSelectedStar4.visibility = View.INVISIBLE
+                            p0.itemView.accommodationSelectedStar5.visibility = View.INVISIBLE
+                        }
+                        3 -> {
+                            p0.itemView.accommodationSelectedStar1.visibility = View.VISIBLE
+                            p0.itemView.accommodationSelectedStar2.visibility = View.VISIBLE
+                            p0.itemView.accommodationSelectedStar3.visibility = View.VISIBLE
+                            p0.itemView.accommodationSelectedStar4.visibility = View.INVISIBLE
+                            p0.itemView.accommodationSelectedStar5.visibility = View.INVISIBLE
+                        }
+                        4 -> {
+                            p0.itemView.accommodationSelectedStar1.visibility = View.VISIBLE
+                            p0.itemView.accommodationSelectedStar2.visibility = View.VISIBLE
+                            p0.itemView.accommodationSelectedStar3.visibility = View.VISIBLE
+                            p0.itemView.accommodationSelectedStar4.visibility = View.VISIBLE
+                            p0.itemView.accommodationSelectedStar5.visibility = View.INVISIBLE
+                        }
+                        5 -> {
+                            p0.itemView.accommodationSelectedStar1.visibility = View.VISIBLE
+                            p0.itemView.accommodationSelectedStar2.visibility = View.VISIBLE
+                            p0.itemView.accommodationSelectedStar3.visibility = View.VISIBLE
+                            p0.itemView.accommodationSelectedStar4.visibility = View.VISIBLE
+                            p0.itemView.accommodationSelectedStar5.visibility = View.VISIBLE
+                        }
+                    }
+                }
+            }
+            is FoodSelectedViewHolder -> {
+                val food = dataset[p1]
+                if (food is Food) {
+                    p0.itemView.foodSelectedTitle.text = food.name
+                    p0.itemView.foodSelectedDescription.text = food.desription
+                    p0.itemView.foodSelectedPrice.text = food.price
+                }
+            }
+            is EntertainmentSelectedViewHolder -> {
+                val ent = dataset[p1]
+                if (ent is Entertainment) {
+                    p0.itemView.entertainmentSelectedTitle.text = ent.name
+                    p0.itemView.entertainmentSelectedDescription.text = ent.description
+                    p0.itemView.entertainmentSelectedPrice.text = ent.price
+                }
+            }
+            is CarRentSelectedViewHolder -> {
+                val car = dataset[p1]
+                if (car is CarRent) {
+                    p0.itemView.carRentSelectedTitle.text = car.name
+                    p0.itemView.carRentSelectedDescription.text = car.desription
+                    p0.itemView.carRentSelectedPrice.text = car.price
+                }
+            }
+        }
     }
 
     inner class TopTextViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -89,84 +177,101 @@ class ConstructorAdapter(var context: Context, var dataset: ArrayList<Any>) : Re
     }
     inner class FlightTicketsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
-            view.flightTicketsSelectedCard.setOnClickListener {
-
+            view.flightTicketsCard.setOnClickListener {
+                (context as Activity).startActivityForResult(Intent((context as Activity), ItemListActivity::class.java)
+                        .putExtra("type", "tickets")
+                        .putParcelableArrayListExtra("tickets", tickets), 1)
             }
         }
     }
     inner class AccommodationViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
             view.accommodationCard.setOnClickListener {
-
+                (context as Activity).startActivityForResult(Intent((context as Activity), ItemListActivity::class.java)
+                        .putExtra("type", "hotels")
+                        .putParcelableArrayListExtra("hotels", hotels), 2)
             }
         }
     }
     inner class FoodViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
-            view.foodCard.setOnClickListener {
-
+            view.foodCard?.setOnClickListener {
+                (context as Activity).startActivityForResult(Intent((context as Activity), ItemListActivity::class.java)
+                        .putExtra("type", "food"), 3)
             }
         }
     }
     inner class EntertainmentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
             view.entertainmentCard.setOnClickListener {
-
+                (context as Activity).startActivityForResult(Intent((context as Activity), ItemListActivity::class.java)
+                        .putExtra("type", "entertainment"), 4)
             }
         }
     }
     inner class CarRentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
-            view.carRentCard.setOnClickListener {  }
-
+            view.carRentCard.setOnClickListener {
+                (context as Activity).startActivityForResult(Intent((context as Activity), ItemListActivity::class.java)
+                        .putExtra("type", "car"), 5)
+            }
         }
     }
     inner class InsuranceViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
             view.insuranceCard.setOnClickListener {
-
+                (context as Activity).startActivityForResult(Intent((context as Activity), ItemListActivity::class.java)
+                        .putExtra("type", "insurance"), 6)
             }
         }
     }
     inner class FlightTicketsSelectedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
             view.flightTicketsSelectedCard.setOnClickListener {
-
+                (context as Activity).startActivityForResult(Intent((context as Activity), ItemListActivity::class.java)
+                        .putExtra("type", "tickets")
+                        .putParcelableArrayListExtra("tickets", tickets), 1)
             }
         }
     }
-    inner class AccommodationVSelectediewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class AccommodationSelectediewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
             view.accommodationSelectedCard.setOnClickListener {
-
+                (context as Activity).startActivityForResult(Intent((context as Activity), ItemListActivity::class.java)
+                        .putExtra("type", "hotels")
+                        .putParcelableArrayListExtra("hotels", hotels), 2)
             }
         }
     }
     inner class FoodSelectedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
             view.foodSelectedCard.setOnClickListener {
-
+                (context as Activity).startActivityForResult(Intent((context as Activity), ItemListActivity::class.java)
+                        .putExtra("type", "food"), 3)
             }
         }
     }
     inner class EntertainmentSelectedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
             view.entertainmentSelectedCard.setOnClickListener {
-
+                (context as Activity).startActivityForResult(Intent((context as Activity), ItemListActivity::class.java)
+                        .putExtra("type", "entertainment"), 4)
             }
         }
     }
     inner class CarRentSelectedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
             view.carRentSelectedCard.setOnClickListener {
-
+                (context as Activity).startActivityForResult(Intent((context as Activity), ItemListActivity::class.java)
+                        .putExtra("type", "car"), 5)
             }
         }
     }
     inner class InsuranceSelectedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
             view.insuranceSelectedCard.setOnClickListener {
-
+                (context as Activity).startActivityForResult(Intent((context as Activity), ItemListActivity::class.java)
+                        .putExtra("type", "insuranceCancel"), 7)
             }
         }
     }
