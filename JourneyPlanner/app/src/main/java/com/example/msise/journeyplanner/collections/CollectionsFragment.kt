@@ -15,8 +15,32 @@ class CollectionsFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_collections, container, false)
 
         val my1 = view.findViewById<CardView>(R.id.my1)
+        val my2 = view.findViewById<CardView>(R.id.my2)
+        val rec1 = view.findViewById<CardView>(R.id.rec1)
+        val rec2 = view.findViewById<CardView>(R.id.rec2)
+        val rec3 = view.findViewById<CardView>(R.id.rec3)
+        val rec4 = view.findViewById<CardView>(R.id.rec4)
+        val rec5 = view.findViewById<CardView>(R.id.rec5)
 
         my1.setOnClickListener {
+            startActivity(Intent(activity, ConstructorActivity::class.java).putExtra("open", 1))
+        }
+        my2.setOnClickListener {
+            startActivity(Intent(activity, ConstructorActivity::class.java).putExtra("open", 1))
+        }
+        rec1.setOnClickListener {
+            startActivity(Intent(activity, ConstructorActivity::class.java).putExtra("open", 1))
+        }
+        rec2.setOnClickListener {
+            startActivity(Intent(activity, ConstructorActivity::class.java).putExtra("open", 1))
+        }
+        rec3.setOnClickListener {
+            startActivity(Intent(activity, ConstructorActivity::class.java).putExtra("open", 1))
+        }
+        rec4.setOnClickListener {
+            startActivity(Intent(activity, ConstructorActivity::class.java).putExtra("open", 1))
+        }
+        rec5.setOnClickListener {
             startActivity(Intent(activity, ConstructorActivity::class.java).putExtra("open", 1))
         }
 
