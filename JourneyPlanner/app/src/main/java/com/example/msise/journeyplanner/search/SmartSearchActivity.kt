@@ -44,18 +44,18 @@ class SmartSearchActivity : AppCompatActivity() {
                 val endPoint = ApiClient().getClient().create(ApiInterface::class.java)
                 val call = endPoint.sendBrainDescription(Description(description.text.toString()))
 
-                call.enqueue(object : Callback<BrainResponse> {
-                    override fun onResponse(call: Call<BrainResponse>?, response: Response<BrainResponse>?) {
+                call.enqueue(object : Callback<ServerResponse> {
+                    override fun onResponse(call: Call<ServerResponse>?, response: Response<ServerResponse>?) {
                         val result = response?.body()
-//                        val tickets = result?.tickets as ArrayList?
-//                        val hotels = result?.hotels as ArrayList?
+                        val tickets = result?.tickets as ArrayList?
+                        val hotels = result?.hotels as ArrayList?
 
-                        startActivity(Intent(applicationContext, ConstructorActivity::class.java))
-//                                .putParcelableArrayListExtra("tickets", tickets)
-//                                .putParcelableArrayListExtra("hotels", hotels))
+                        startActivity(Intent(applicationContext, ConstructorActivity::class.java)
+                                .putParcelableArrayListExtra("tickets", tickets)
+                                .putParcelableArrayListExtra("hotels", hotels))
                     }
 
-                    override fun onFailure(call: Call<BrainResponse>?, t: Throwable?) {
+                    override fun onFailure(call: Call<ServerResponse>?, t: Throwable?) {
                     }
                 })
             }

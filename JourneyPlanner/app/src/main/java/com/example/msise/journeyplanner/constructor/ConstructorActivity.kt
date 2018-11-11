@@ -5,6 +5,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.TextView
 import com.example.msise.journeyplanner.R
 import com.example.msise.journeyplanner.model.*
 import kotlinx.android.synthetic.main.activity_constructor.*
@@ -28,6 +29,11 @@ class ConstructorActivity : AppCompatActivity() {
         val hotels = intent.getParcelableArrayListExtra<Hotel>("hotels")
 
         dataset = ArrayList()
+
+        val save: TextView = findViewById(R.id.save)
+        save.setOnClickListener{
+            finish()
+        }
 
         val ticketsDataset = ArrayList<FlightTickets>()
         if (tickets != null) {
