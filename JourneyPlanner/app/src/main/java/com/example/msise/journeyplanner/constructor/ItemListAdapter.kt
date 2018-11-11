@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.msise.journeyplanner.R
 import com.example.msise.journeyplanner.model.*
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_list_car.view.*
 import kotlinx.android.synthetic.main.item_list_entertainment.view.*
 import kotlinx.android.synthetic.main.item_list_food.view.*
@@ -16,6 +17,34 @@ import kotlinx.android.synthetic.main.item_list_hotel.view.*
 import kotlinx.android.synthetic.main.item_list_ticket.view.*
 
 class ItemListAdapter(var context: Context, var dataset: ArrayList<Any>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    val hotelList = arrayListOf<String>(
+            "https://pix10.agoda.net/hotelImages/489/489266/489266_17032920250052009110.jpg?s=1024x768",
+            "https://www.amtrak.com/content/dam/projects/dotcom/english/public/images/text-with-image-square/hotel-building-pool.jpg/_jcr_content/renditions/cq5dam.web.600.600.jpeg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg0AMriutllpphYg5h9s-NXc3MRnckXDqJS6-MPFw5QRBH_lCw",
+            "https://media-api.xogrp.com/images/9a506749-95e9-47cf-857e-5374f2205b93~rs_768.h"
+    )
+
+    val foodList = arrayListOf<String>(
+            "https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/64/2016/04/07101403/Manotel-Geneve-Restaurants.jpg",
+            "http://www.hotelseacliff.com/wp-content/uploads/2017/04/alcove1.jpg",
+            "http://www.realdetroitweekly.com/wp-content/uploads/2017/06/Restaurants.jpg",
+            "https://www.gannett-cdn.com/-mm-/ac688eec997d2fce10372bf71657297ff863814d/c=171-0-1195-768/local/-/media/2018/07/31/USATODAY/usatsports/247WallSt.com-247WS-482802-restaurant.jpg?width=680&height=510&fit=crop"
+    )
+
+    val carList = arrayListOf<String>(
+            "https://www.hellopeter.com//static/img/industries/icons/car-rental-icon.jpg",
+            "http://www.carzonrent.com/images/346x392x7111822296.png.pagespeed.ic.Jiyk43v6PX.jpg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlI9TqIQctmjuM9UoM-Jxw39Yv7F0_X5HMicKw6M5jYIIS1vOZ",
+            "https://cabledahmerbodyshop.com/wp-content/uploads/2018/08/CD-Collision-BOX-RentalCars.jpg"
+    )
+
+    val entList = arrayListOf<String>(
+            "https://media.blogto.com/articles/20171112-live-theatre-toronto.jpg?w=2048&cmd=resize_then_crop&height=1365&quality=70",
+            "https://washington-org.s3.amazonaws.com/s3fs-public/children-viewing-henry-the-elephant-at-natural-history-museum_credit-department-of-state-iip-photo-archive.jpg",
+            "https://lovelace-media.imgix.net/getty/481127342.jpg",
+            "https://www.wienmuseum.at/fileadmin/user_upload/Slideshows_Locations_Wien_Museum/Wien_Museum_Karlsplatz/Wien_Museum_Karlsplatz_Dauerausstellung_Stock2_Foto_06.jpg"
+    )
 
     object HolderTypes {
         const val TICKET = 1
@@ -65,6 +94,8 @@ class ItemListAdapter(var context: Context, var dataset: ArrayList<Any>) : Recyc
             is HotelViewHolder -> {
                 val hotel = dataset[p1]
                 if (hotel is Accommodation) {
+                    val imageUri = hotelList[p1%4]
+                    Picasso.get().load(imageUri).resize(115, 120).centerCrop().into(p0.itemView.hotelImage)
                     p0.itemView.nameHotel.text = hotel.name
                     p0.itemView.descriptionHotel.text = hotel.desription
                     p0.itemView.priceHotel.text = hotel.price
@@ -110,6 +141,8 @@ class ItemListAdapter(var context: Context, var dataset: ArrayList<Any>) : Recyc
             is FoodViewHolder -> {
                 val food = dataset[p1]
                 if (food is Food) {
+                    val imageUri = foodList[p1%4]
+                    Picasso.get().load(imageUri).resize(115, 120).centerCrop().into(p0.itemView.foodImage)
                     p0.itemView.nameFood.text = food.name
                     p0.itemView.descriptionFood.text = food.desription
                     p0.itemView.priceFood.text = food.price
@@ -118,6 +151,8 @@ class ItemListAdapter(var context: Context, var dataset: ArrayList<Any>) : Recyc
             is EntertainmentViewHolder -> {
                 val ent = dataset[p1]
                 if (ent is Entertainment) {
+                    val imageUri = entList[p1%4]
+                    Picasso.get().load(imageUri).resize(115, 120).centerCrop().into(p0.itemView.entertainmentImage)
                     p0.itemView.nameEnt.text = ent.name
                     p0.itemView.descriptionEnt.text = ent.description
                     p0.itemView.priceEnt.text = ent.price
@@ -126,6 +161,8 @@ class ItemListAdapter(var context: Context, var dataset: ArrayList<Any>) : Recyc
             is CarViewHolder -> {
                 val car = dataset[p1]
                 if (car is CarRent) {
+                    val imageUri = carList[p1%4]
+                    Picasso.get().load(imageUri).resize(115, 120).centerCrop().into(p0.itemView.carImage)
                     p0.itemView.nameCar.text = car.name
                     p0.itemView.descriptionCar.text = car.desription
                     p0.itemView.priceCar.text = car.price
