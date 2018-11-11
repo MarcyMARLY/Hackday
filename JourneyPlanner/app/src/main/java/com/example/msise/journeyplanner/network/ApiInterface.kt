@@ -1,5 +1,7 @@
 package com.example.msise.journeyplanner.network
 
+import com.example.msise.journeyplanner.model.BrainResponse
+import com.example.msise.journeyplanner.model.Description
 import com.example.msise.journeyplanner.model.Hotel
 import com.example.msise.journeyplanner.model.ServerResponse
 import com.example.msise.journeyplanner.model.TicketsRequest
@@ -15,8 +17,8 @@ interface ApiInterface {
     @POST("tickets")
     fun sendTicket(@Body ticketsRequest: TicketsRequest): Call<ServerResponse>
 
-    @POST("brain/")
-    fun sendBrainDescription(@Body description: String): Call<TicketsRequest>
+    @POST("brain")
+    fun sendBrainDescription(@Body description: Description): Call<BrainResponse>
 
     @GET("hotels/")
     fun getHotels(): Call<List<Hotel>>

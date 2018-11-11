@@ -10,6 +10,10 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import com.example.msise.journeyplanner.R
+import com.example.msise.journeyplanner.constructor.ConstructorActivity
+import com.example.msise.journeyplanner.model.BrainResponse
+import com.example.msise.journeyplanner.model.Description
+import com.example.msise.journeyplanner.model.ServerResponse
 import com.example.msise.journeyplanner.model.TicketsRequest
 import com.example.msise.journeyplanner.network.ApiClient
 import com.example.msise.journeyplanner.network.ApiInterface
@@ -38,16 +42,20 @@ class SmartSearchActivity : AppCompatActivity() {
         buttonGenerate.setOnClickListener {
             if (description.text != null) {
                 val endPoint = ApiClient().getClient().create(ApiInterface::class.java)
-                val call = endPoint.sendBrainDescription(description.text.toString())
+                val call = endPoint.sendBrainDescription(Description(description.text.toString()))
 
-                call.enqueue(object : Callback<TicketsRequest> {
-                    override fun onResponse(call: Call<TicketsRequest>?, response: Response<TicketsRequest>?) {
-                        //val post = response?.body()
-                        Log.d("Ticket: ", "ok")
+                call.enqueue(object : Callback<BrainResponse> {
+                    override fun onResponse(call: Call<BrainResponse>?, response: Response<BrainResponse>?) {
+                        val result = response?.body()
+//                        val tickets = result?.tickets as ArrayList?
+//                        val hotels = result?.hotels as ArrayList?
+
+                        startActivity(Intent(applicationContext, ConstructorActivity::class.java))
+//                                .putParcelableArrayListExtra("tickets", tickets)
+//                                .putParcelableArrayListExtra("hotels", hotels))
                     }
 
-                    override fun onFailure(call: Call<TicketsRequest>?, t: Throwable?) {
-                        Log.e("ErrorTicket: ", t?.message)
+                    override fun onFailure(call: Call<BrainResponse>?, t: Throwable?) {
                     }
                 })
             }
