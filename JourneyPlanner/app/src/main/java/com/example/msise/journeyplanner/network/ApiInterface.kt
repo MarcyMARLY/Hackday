@@ -18,7 +18,7 @@ interface ApiInterface {
     fun sendTicket(@Body ticketsRequest: TicketsRequest): Call<ServerResponse>
 
     @POST("brain")
-    fun sendBrainDescription(@Body description: Description): Call<BrainResponse>
+    fun sendBrainDescription(@Body description: Description): Call<ServerResponse>
 
     @GET("hotels/")
     fun getHotels(): Call<List<Hotel>>
