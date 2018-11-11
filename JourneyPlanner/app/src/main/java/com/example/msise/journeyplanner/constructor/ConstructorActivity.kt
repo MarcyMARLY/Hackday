@@ -50,10 +50,10 @@ class ConstructorActivity : AppCompatActivity() {
                 for (t in 0..(tickets.size - 1)) {
                     val ticket = tickets[t]
                     val flightTicket = FlightTickets(ticket.dateFrom,
-                            ticket.flyFrom + " - " + ticket.flyTo + ", " + ticket.airlineFrom,
+                            ticket.cityFrom + " - " + ticket.cityTo,
                             ticket.flyDuration,
                             ticket.dateTo,
-                            ticket.flyTo + " - " + ticket.flyFrom + ", " + ticket.airlineFrom,
+                            ticket.cityTo + " - " + ticket.cityFrom,
                             ticket.returnDuration,
                             "Price: $" + ticket.price.toString())
                     ticketsDataset.add(flightTicket)
