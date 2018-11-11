@@ -58,7 +58,9 @@ class ConstructorActivity : AppCompatActivity() {
                             "Price: $" + ticket.price.toString())
                     ticketsDataset.add(flightTicket)
                 }
-                ticketGenerated = ticketsDataset[0]
+                if (!ticketsDataset.isEmpty()) {
+                    ticketGenerated = ticketsDataset[0]
+                }
             }
 
             if (hotels != null) {
@@ -67,7 +69,9 @@ class ConstructorActivity : AppCompatActivity() {
                     val accommodation = Accommodation(hotel.hotelName, hotel.stars.toDouble().roundToInt(), hotel.address + ", " + hotel.cityName, "Price: $" + hotel.price.toString())
                     hotelsDataset.add(accommodation)
                 }
-                hotelGenerated = hotelsDataset[0]
+                if (!hotelsDataset.isEmpty()) {
+                    hotelGenerated = hotelsDataset[0]
+                }
             }
 
             dataset.add(Pair("Generate by Budget", 1))
