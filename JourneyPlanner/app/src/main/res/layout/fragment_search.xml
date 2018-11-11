@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,7 +28,7 @@
                     android:text="@string/fragment_search_header"
                     android:textAlignment="center"
                     android:textColor="@color/baseWhite"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/fragment_search_card_flights"
@@ -52,10 +51,10 @@
                             android:drawableLeft="@drawable/ic_flight_takeoff"
                             android:drawablePadding="16dp"
                             android:drawableTint="@color/app_grey_3001"
-                            android:padding="8dp"
+                            android:padding="16dp"
                             android:text="Origin"
                             android:textColor="@color/app_grey_500"
-                            android:textSize="16sp" />
+                            android:textSize="18sp" />
 
                         <View
                             android:id="@+id/divider"
@@ -74,10 +73,10 @@
                             android:drawableLeft="@drawable/ic_flight_land"
                             android:drawablePadding="16dp"
                             android:drawableTint="@color/app_grey_3001"
-                            android:padding="8dp"
+                            android:padding="16dp"
                             android:text="Destination"
                             android:textColor="@color/app_grey_500"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             app:layout_constraintTop_toBottomOf="@+id/divider" />
                     </android.support.constraint.ConstraintLayout>
 
@@ -105,10 +104,10 @@
                             android:drawableLeft="@drawable/ic_date_range"
                             android:drawablePadding="16dp"
                             android:drawableTint="@color/app_grey_3001"
-                            android:padding="8dp"
+                            android:padding="16dp"
                             android:text="Origin date"
                             android:textColor="@color/app_grey_500"
-                            android:textSize="16sp" />
+                            android:textSize="18sp" />
 
                         <View
                             android:id="@+id/divider_date"
@@ -127,10 +126,10 @@
                             android:drawableLeft="@drawable/ic_date_range"
                             android:drawablePadding="16dp"
                             android:drawableTint="@color/app_grey_3001"
-                            android:padding="8dp"
+                            android:padding="16dp"
                             android:text="Destination date"
                             android:textColor="@color/app_grey_500"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             app:layout_constraintTop_toBottomOf="@+id/divider_date" />
                     </android.support.constraint.ConstraintLayout>
 
@@ -155,60 +154,92 @@
                             android:id="@+id/card_passengers"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:padding="8dp"
+                            android:padding="16dp"
                             android:text="Passengers"
                             android:textColor="@color/app_grey_500"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             app:layout_constraintStart_toStartOf="parent" />
+
+
+                        <ImageView
+                            android:id="@+id/adultImg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_human_male"
+                            android:tint="@color/app_grey_3001"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintRight_toLeftOf="@id/card_passengers_adults"
+                            android:layout_marginEnd="8dp"/>
 
                         <EditText
                             android:id="@+id/card_passengers_adults"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@null"
-                            android:drawableLeft="@drawable/ic_human_male"
-                            android:drawablePadding="6dp"
-                            android:drawableTint="@color/app_grey_3001"
                             android:hint="0"
                             android:inputType="number"
-                            android:padding="8dp"
+                            android:layout_marginEnd="16dp"
                             android:textColor="@color/app_grey_500"
                             android:textColorHint="@color/app_grey_500"
                             android:textSize="16sp"
-                            app:layout_constraintEnd_toStartOf="@+id/card_passengers_children" />
+                            app:layout_constraintRight_toLeftOf="@id/childImg"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+                        <ImageView
+                            android:id="@+id/childImg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_human_child"
+                            android:tint="@color/app_grey_3001"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintRight_toLeftOf="@id/card_passengers_children"
+                            android:layout_marginEnd="8dp"/>
 
                         <EditText
                             android:id="@+id/card_passengers_children"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@null"
-                            android:drawableLeft="@drawable/ic_human_child"
-                            android:drawablePadding="6dp"
-                            android:drawableTint="@color/app_grey_3001"
                             android:hint="0"
                             android:inputType="number"
-                            android:padding="8dp"
                             android:textColor="@color/app_grey_500"
                             android:textColorHint="@color/app_grey_500"
                             android:textSize="16sp"
-                            app:layout_constraintEnd_toStartOf="@+id/card_passengers_infants" />
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintRight_toLeftOf="@id/babyImg"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/babyImg"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_baby_buggy"
+                            android:tint="@color/app_grey_3001"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintRight_toLeftOf="@id/card_passengers_infants"
+                            android:layout_marginEnd="8dp"/>
 
                         <EditText
                             android:id="@+id/card_passengers_infants"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@null"
-                            android:drawableLeft="@drawable/ic_baby_buggy"
-                            android:drawablePadding="6dp"
-                            android:drawableTint="@color/app_grey_3001"
                             android:hint="0"
                             android:inputType="number"
-                            android:padding="8dp"
+                            android:layout_marginEnd="16dp"
                             android:textColor="@color/app_grey_500"
                             android:textColorHint="@color/app_grey_500"
                             android:textSize="16sp"
-                            app:layout_constraintEnd_toEndOf="parent" />
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
 
                     </android.support.constraint.ConstraintLayout>
 
@@ -220,27 +251,27 @@
                 android:id="@+id/fragment_search_button_continue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:background="@drawable/rounded_button"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="Continue"
+                android:textSize="16sp"
                 android:textColor="@color/baseWhite"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_search_container" />
+                app:layout_constraintTop_toTopOf="@id/fragment_search_fab"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_search_fab"/>
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fragment_search_fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="40dp"
+                android:layout_margin="16dp"
                 android:backgroundTint="@color/baseBlue"
                 android:src="@drawable/ic_brain"
-                app:fabCustomSize="47dp"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_search_container" />
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
         </android.support.constraint.ConstraintLayout>
-    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>

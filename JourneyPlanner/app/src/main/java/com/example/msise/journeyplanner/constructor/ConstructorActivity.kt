@@ -69,6 +69,10 @@ class ConstructorActivity : AppCompatActivity() {
         return ticketsCost + accommodationCost + foodCost + entCost + carCost + insuranceCost
     }
 
+    fun generateByBudget() {
+
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when(requestCode) {
             1 -> {
