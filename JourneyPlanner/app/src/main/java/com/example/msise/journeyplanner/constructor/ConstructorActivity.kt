@@ -13,6 +13,8 @@ import kotlin.math.roundToInt
 class ConstructorActivity : AppCompatActivity() {
 
     lateinit var dataset: ArrayList<Any>
+    lateinit var ticketGenerated: FlightTickets
+    lateinit var hotelGenerated: Accommodation
     var ticketsCost = 0
     var accommodationCost = 0
     var foodCost = 0
@@ -42,6 +44,7 @@ class ConstructorActivity : AppCompatActivity() {
                         "Price: $" + ticket.price.toString())
                 ticketsDataset.add(flightTicket)
             }
+            ticketGenerated = ticketsDataset[0]
         }
 
         val hotelsDataset = ArrayList<Accommodation>()
@@ -51,6 +54,7 @@ class ConstructorActivity : AppCompatActivity() {
                 val accommodation = Accommodation(hotel.hotelName, hotel.stars.toDouble().roundToInt(), hotel.address + ", " + hotel.cityName, "Price: $" + hotel.price.toString())
                 hotelsDataset.add(accommodation)
             }
+            hotelGenerated = hotelsDataset[0]
         }
 
         dataset.add(Pair("Generate by Budget", 1))
@@ -69,9 +73,7 @@ class ConstructorActivity : AppCompatActivity() {
         return ticketsCost + accommodationCost + foodCost + entCost + carCost + insuranceCost
     }
 
-    fun generateByBudget() {
 
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when(requestCode) {
@@ -143,6 +145,24 @@ class ConstructorActivity : AppCompatActivity() {
                     val curCost = "Cost: $" + calculateCost().toString()
                     cost.text = curCost
                     constructorRecyclerView.adapter?.notifyDataSetChanged()
+                }
+            }
+            8 -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    dataset[1] = ticketGenerated
+                    dataset[2] = hotelGenerated
+                    dataset[3] = Food("Italian Senioro", "Whereiswaldo Street 46", "Price: $30.00")
+                    dataset[4] = Entertainment("Sweet Fest", "Dominica Square, lots of sweet food", "Price: $15.20")
+                    dataset[5] = CarRent("Honda A9", "Middle class hetchback", "Price: $40.00")
+                    dataset[6] = Insurance("Basic Health Pack", "Collects the most popular medical insurance", "Price: $25.00")
+
+                    ticketsCost = ticketGenerated.price.substring(8).toDouble().roundToInt()
+                    accommodationCost = hotelGenerated.price.substring(8).toDouble().roundToInt()
+
+
+                    constructorRecyclerView.adapter?.notifyDataSetChanged()
+                    val curCost = "Cost: $" + (calculateCost()+30+15+40+25).toString()
+                    cost.text = curCost
                 }
             }
         }

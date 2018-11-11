@@ -171,7 +171,8 @@ class ConstructorAdapter(var context: Context, var dataset: ArrayList<Any>, var 
     inner class TopTextViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         init {
             view.topTextCard.setOnClickListener {
-
+                (context as Activity).startActivityForResult(Intent((context as Activity), ItemListActivity::class.java)
+                        .putExtra("type", "generate"), 8)
             }
         }
     }

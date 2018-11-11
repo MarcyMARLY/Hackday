@@ -5,25 +5,247 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/fragment_collection_my_header"
+        android:id="@+id/fragment_collections_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Мои путешествия"
-        android:textColor="@color/app_grey_900"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="16dp"
-        />
+        android:fontFamily="sans-serif"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:text="Journeys"
+        android:textAlignment="center"
+        android:textColor="@color/baseWhite"
+        android:background="@color/baseBlue"
+        android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/fragment_collection_header"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Готовые путешествия"
-        android:textColor="@color/app_grey_900"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="16dp"
-        />
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/fragment_collections_header"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:text="My Journeys"
+                android:id="@+id/myJourneys"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_margin="16dp"/>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/my1"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                app:layout_constraintTop_toBottomOf="@id/myJourneys"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/colorRed"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="My Family Tour"
+                        android:id="@+id/rec1title"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        android:layout_margin="16dp"/>
+
+                    <TextView
+                        android:text="15.11.18 - 21.11.18"
+                        android:id="@+id/rec1date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        android:layout_margin="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/rec1title"/>
+
+                    <TextView
+                        android:text="$450"
+                        android:id="@+id/rec1cost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_margin="16dp"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorWhite"/>
+
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/my2"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                app:layout_constraintTop_toBottomOf="@id/myJourneys"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/colorPink"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:text="Recommended Journeys"
+                android:id="@+id/recommended"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/my1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_margin="16dp" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/rec1"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                app:layout_constraintTop_toBottomOf="@id/recommended"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/colorPurple"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/rec2"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                app:layout_constraintTop_toBottomOf="@id/recommended"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/colorDeepPurple"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/rec3"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                app:layout_constraintTop_toBottomOf="@id/rec1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/colorIndigo"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/rec4"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                app:layout_constraintTop_toBottomOf="@id/rec2"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/colorBlue"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/rec5"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                app:layout_constraintTop_toBottomOf="@id/rec3"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/colorBlue"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+
+
+
 
 </android.support.constraint.ConstraintLayout>

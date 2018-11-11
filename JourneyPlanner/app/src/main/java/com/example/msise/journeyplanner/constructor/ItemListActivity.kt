@@ -58,6 +58,10 @@ class ItemListActivity : AppCompatActivity() {
                         .putExtra("insurance", INSURANCE))
                 finish()
             }
+            "generate" -> {
+                setResult(Activity.RESULT_OK, Intent())
+                finish()
+            }
         }
 
         dataset.add(SPACE)
